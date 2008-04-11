@@ -1,0 +1,576 @@
+  [4;36;1mSQL (0.000702)[0m   [0;1mSHOW client_min_messages[0m
+  [4;35;1mSQL (0.000176)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.000095)[0m   [0;1mSHOW standard_conforming_strings[0m
+  [4;35;1mSQL (0.000084)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000805)[0m   [0;1mSELECT version()[0m
+  [4;35;1mSQL (0.003832)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001092)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000543)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: table "users" does not exist
+: DROP TABLE users[0m
+  [4;36;1mSQL (0.008543)[0m   [0;1mCREATE TABLE users ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001047)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000276)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000131)[0m   [0mSHOW search_path[0m
+  [4;36;1mSQL (0.004648)[0m   [0;1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN (E'$user',E'public')
+[0m
+  [4;35;1mSQL (0.003723)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.003702)[0m   [0;1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;35;1mSQL (0.003323)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.000811)[0m   [0;1mSHOW client_min_messages[0m
+  [4;35;1mSQL (0.000255)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.000162)[0m   [0;1mSHOW standard_conforming_strings[0m
+  [4;35;1mSQL (0.000102)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.001068)[0m   [0;1mSELECT version()[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000723)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000225)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000145)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.004304)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN (E'$user',E'public')
+[0m
+  [4;36;1mSQL (0.003603)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.003328)[0m   [0m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;36;1mSQL (0.003183)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000586)[0m   [0mSHOW client_min_messages[0m
+  [4;36;1mSQL (0.000183)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000124)[0m   [0mSHOW standard_conforming_strings[0m
+  [4;36;1mSQL (0.000086)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.000791)[0m   [0mSELECT version()[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE users[0m
+  [4;35;1mSQL (0.010668)[0m   [0mCREATE TABLE users ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001598)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000992)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.004562)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'schema_info'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000788)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000516)[0m   [0;1mSHOW client_min_messages[0m
+  [4;35;1mSQL (0.000155)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.000089)[0m   [0;1mSHOW standard_conforming_strings[0m
+  [4;35;1mSQL (0.000080)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000768)[0m   [0;1mSELECT version()[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000551)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000162)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000144)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.003860)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN (E'$user',E'public')
+[0m
+  [4;36;1mSQL (0.002988)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.002875)[0m   [0m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;36;1mSQL (0.002506)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000590)[0m   [0mSHOW client_min_messages[0m
+  [4;36;1mSQL (0.000180)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000090)[0m   [0mSHOW standard_conforming_strings[0m
+  [4;36;1mSQL (0.000080)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.000785)[0m   [0mSELECT version()[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE users[0m
+  [4;35;1mSQL (0.009737)[0m   [0mCREATE TABLE users ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.002258)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000943)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.004822)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'schema_info'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000763)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000530)[0m   [0;1mSHOW client_min_messages[0m
+  [4;35;1mSQL (0.000172)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.000090)[0m   [0;1mSHOW standard_conforming_strings[0m
+  [4;35;1mSQL (0.000081)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000705)[0m   [0;1mSELECT version()[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000590)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000172)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000137)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.003729)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN (E'$user',E'public')
+[0m
+  [4;36;1mSQL (0.003018)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.002915)[0m   [0m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;36;1mSQL (0.002533)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000582)[0m   [0mSHOW client_min_messages[0m
+  [4;36;1mSQL (0.000176)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000092)[0m   [0mSHOW standard_conforming_strings[0m
+  [4;36;1mSQL (0.000079)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.000773)[0m   [0mSELECT version()[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE users[0m
+  [4;35;1mSQL (0.009754)[0m   [0mCREATE TABLE users ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001847)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000998)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.004673)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'schema_info'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000728)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000561)[0m   [0;1mSHOW client_min_messages[0m
+  [4;35;1mSQL (0.000179)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.000092)[0m   [0;1mSHOW standard_conforming_strings[0m
+  [4;35;1mSQL (0.000080)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000781)[0m   [0;1mSELECT version()[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000567)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000167)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000098)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.003902)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN (E'$user',E'public')
+[0m
+  [4;36;1mSQL (0.003058)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.002954)[0m   [0m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;36;1mSQL (0.002516)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000575)[0m   [0mSHOW client_min_messages[0m
+  [4;36;1mSQL (0.000174)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000103)[0m   [0mSHOW standard_conforming_strings[0m
+  [4;36;1mSQL (0.000094)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.000806)[0m   [0mSELECT version()[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE users[0m
+  [4;35;1mSQL (0.009949)[0m   [0mCREATE TABLE users ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001797)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000937)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.004484)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'schema_info'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000765)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000530)[0m   [0;1mSHOW client_min_messages[0m
+  [4;35;1mSQL (0.000172)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.000093)[0m   [0;1mSHOW standard_conforming_strings[0m
+  [4;35;1mSQL (0.000086)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000754)[0m   [0;1mSELECT version()[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000576)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000156)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000099)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.003957)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN (E'$user',E'public')
+[0m
+  [4;36;1mSQL (0.003082)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.002984)[0m   [0m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;36;1mSQL (0.002535)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.001678)[0m   [0mSHOW client_min_messages[0m
+  [4;36;1mSQL (0.000184)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000109)[0m   [0mSHOW standard_conforming_strings[0m
+  [4;36;1mSQL (0.000090)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.000805)[0m   [0mSELECT version()[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE users[0m
+  [4;35;1mSQL (0.010543)[0m   [0mCREATE TABLE users ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.003024)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000980)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.004540)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'schema_info'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000738)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000280)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000098)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.030264)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.012431)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000339)[0m   [0;1mSELECT version FROM "schema_info"[0m
+  [4;35;1mSQL (0.000347)[0m   [0mSELECT version FROM "schema_migrations"[0m
+  [4;36;1mSQL (0.001098)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;35;1mSQL (0.022109)[0m   [0mDROP TABLE "schema_info"[0m
+  [4;36;1mSQL (0.000718)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000326)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000170)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000051)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.009720)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001532)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002175)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000361)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.000931)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000160)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000057)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000637)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000271)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000170)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000073)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.010187)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001571)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002473)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000347)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.000904)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000159)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000051)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000495)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000222)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000161)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000053)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.009403)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "login" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "time_zone" character varying(255) DEFAULT E'Etc/UTC', "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001549)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002253)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000448)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001029)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000150)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000054)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.005414)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003197)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000472)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (1)
+  [4;35;1mSQL (0.000172)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.007238)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001287)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('1')[0m
+  [4;35;1mSQL (0.000272)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000157)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000051)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000200)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000161)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000054)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.009469)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001746)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002905)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000387)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001062)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000140)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000051)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000445)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000226)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000161)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000054)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.009302)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.002232)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002514)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000387)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001013)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000158)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000071)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000498)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000217)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000159)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000054)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.008979)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001488)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002355)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000388)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001010)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000150)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000075)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000492)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000218)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000160)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000055)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.015627)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.040876)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.011135)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000552)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001029)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000158)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000051)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000480)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000195)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000159)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000054)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.009397)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001622)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002755)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000378)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001099)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000162)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000052)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000496)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000225)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000165)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000055)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.009511)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001476)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002185)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000424)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001503)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000190)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000091)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.008711)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (1)
+  [4;35;1mSQL (0.000315)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateApps (20080411060318)
+  [4;36;1mSQL (0.000256)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000147)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000051)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000557)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (1)
+  [4;35;1mSQL (0.000137)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateApps (20080411060318)
+  [4;36;1mSQL (0.000137)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.110573)[0m   [0mCREATE TABLE "apps" ("id" serial primary key, "user_id" integer DEFAULT NULL, "key" character varying(255) DEFAULT NULL, "port" integer DEFAULT NULL, "name" character varying(255) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL) [0m
+  [4;36;1mSQL (0.002309)[0m   [0;1mCREATE INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [4;35;1mSQL (0.002185)[0m   [0mCREATE INDEX "index_apps_on_key" ON "apps" ("key")[0m
+  [4;36;1mSQL (0.054448)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080411060318')[0m
+  [4;35;1mSQL (0.000399)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000159)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000052)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000419)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000233)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000161)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000099)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "apps" does not exist
+: DROP TABLE "apps"[0m
+  [4;35;1mSQL (0.012343)[0m   [0mCREATE TABLE "apps" ("id" serial primary key, "user_id" integer DEFAULT NULL, "key" character varying(255) DEFAULT NULL, "port" integer DEFAULT NULL, "name" character varying(255) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL) [0m
+  [4;36;1mSQL (0.002659)[0m   [0;1mCREATE INDEX "index_apps_on_key" ON "apps" ("key")[0m
+  [4;35;1mSQL (0.002276)[0m   [0mCREATE INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: table "users" does not exist
+: DROP TABLE "users"[0m
+  [4;35;1mSQL (0.005850)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "nickname" character varying(255) DEFAULT NULL, "email" character varying(255) DEFAULT NULL, "crypted_password" character varying(40) DEFAULT NULL, "salt" character varying(40) DEFAULT NULL, "created_at" timestamp DEFAULT NULL, "updated_at" timestamp DEFAULT NULL, "last_login_at" timestamp DEFAULT NULL, "remember_token" character varying(255) DEFAULT NULL, "remember_token_expires_at" timestamp DEFAULT NULL, "visits_count" integer DEFAULT 0, "permalink" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001659)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002455)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000368)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.001127)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20080411060318')[0m
+  [4;36;1mSQL (0.000961)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('1')[0m

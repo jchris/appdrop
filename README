@@ -1,0 +1,38 @@
+controllers
+
+login
+
+apps
+
+views
+
+/
+  link to login/signup
+  link to browse apps
+  link to about
+
+/login - this is the main page users see
+  ability to signup or login
+  params:
+    email (shown from cookie if logged-in to appdrop)
+    password
+    -- (for signup)
+    password confirmation
+    nickname
+
+/home
+  list of your apps
+  
+/admin/fug-this
+  control panel for your app
+  maybe just mount the google dev console here?
+
+/apps
+  browse apps
+
+/apps/fug-this
+  public info page for app
+  link to app
+  
+/about
+  where we say we could disappear at any moment

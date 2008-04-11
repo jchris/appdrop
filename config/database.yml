@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: appdrop_dev
+test:
+  adapter: postgresql
+  database: appdrop_test
