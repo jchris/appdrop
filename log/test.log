@@ -25981,3 +25981,392 @@ Completed in 0.00077 (1293 reqs/sec) | Rendering: 0.00044 (57%) | DB: 0.00150 (1
   [4;36;1mSQL (0.000077)[0m   [0;1mROLLBACK[0m
   [4;35;1mSQL (0.000073)[0m   [0mBEGIN[0m
   [4;36;1mSQL (0.000067)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.000157)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000050)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000078)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000819)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mSQL (0.000426)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quire@example.com') [0m
+  [4;35;1mSQL (0.000216)[0m   [0mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quire@example.com') [0m
+  [4;36;1mSQL (0.000199)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mSQL (0.000091)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000071)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000478)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mSQL (0.000246)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quire@example.com') [0m
+  [4;35;1mSQL (0.000217)[0m   [0mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quire@example.com') [0m
+  [4;36;1mSQL (0.000175)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mSQL (0.000073)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000060)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000196)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mSQL (0.000169)[0m   [0;1mSELECT email FROM "users" WHERE ("users".email IS NULL) [0m
+  [4;35;1mSQL (0.000159)[0m   [0mSELECT email FROM "users" WHERE ("users".email IS NULL) [0m
+  [4;36;1mSQL (0.000187)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mSQL (0.000071)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000501)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000190)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mSQL (0.000245)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quire@example.com') [0m
+  [4;35;1mUser Create (0.000692)[0m   [0mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'1ac96bf7531dc78e54b69d1edbaf9758d6d08eea', NULL, NULL, '2008-04-11 03:14:32.772910', E'cca39344b4bf6300ba44b9f6dc1ce8403139d8a1', 0, E're quire', NULL, NULL, E'quire@example.com', '2008-04-11 03:14:32.772910')[0m
+  [4;36;1mSQL (0.000209)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mSQL (0.000214)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mSQL (0.000080)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000113)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000405)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test@foo.bar') [0m
+  [4;35;1mUser Create (0.000352)[0m   [0mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'98f379690366d99e43404637f5bb35203e897273', NULL, NULL, '2008-04-11 03:14:32.783461', E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', 0, E'le quentin', NULL, NULL, E'test@foo.bar', '2008-04-11 03:14:32.783461')[0m
+  [4;36;1mSQL (0.000126)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mUser Update (0.000471)[0m   [0mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.783461', "email" = E'test@foo.bar', "visits_count" = 1, "remember_token" = E'16e38789b5d3be78e578e0508cab1dfe7259c699', "remember_token_expires_at" = '2008-04-18 10:14:32.785415', "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = '2008-04-11 03:14:32.785630', "crypted_password" = E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', "updated_at" = '2008-04-11 03:14:32.785824', "salt" = E'98f379690366d99e43404637f5bb35203e897273' WHERE "id" = 182[0m
+  [4;36;1mSQL (0.000082)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000334)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000294)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test@foo.bar') [0m
+  [4;35;1mUser Create (0.000490)[0m   [0mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'98f379690366d99e43404637f5bb35203e897273', NULL, NULL, '2008-04-11 03:14:32.789364', E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', 0, E'le quentin', NULL, NULL, E'test@foo.bar', '2008-04-11 03:14:32.789364')[0m
+  [4;36;1mSQL (0.000117)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mUser Update (0.000377)[0m   [0mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.789364', "email" = E'test@foo.bar', "visits_count" = 1, "remember_token" = E'3f57d1a2ffcd8d58dacde0beb966de898f34ce01', "remember_token_expires_at" = '2008-04-25 10:14:32.791065', "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = '2008-04-11 03:14:32.791323', "crypted_password" = E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', "updated_at" = '2008-04-11 03:14:32.791511', "salt" = E'98f379690366d99e43404637f5bb35203e897273' WHERE "id" = 183[0m
+  [4;36;1mUser Update (0.000330)[0m   [0;1mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.789364', "email" = E'test@foo.bar', "visits_count" = 1, "remember_token" = NULL, "remember_token_expires_at" = NULL, "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = '2008-04-11 03:14:32.791323', "crypted_password" = E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', "updated_at" = '2008-04-11 03:14:32.792769', "salt" = E'98f379690366d99e43404637f5bb35203e897273' WHERE "id" = 183[0m
+  [4;35;1mSQL (0.000078)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000073)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000279)[0m   [0mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test@foo.bar') [0m
+  [4;36;1mUser Create (0.000269)[0m   [0;1mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'98f379690366d99e43404637f5bb35203e897273', NULL, NULL, '2008-04-11 03:14:32.795249', E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', 0, E'le quentin', NULL, NULL, E'test@foo.bar', '2008-04-11 03:14:32.795249')[0m
+  [4;35;1mSQL (0.000102)[0m   [0mSELECT currval('users_id_seq')[0m
+  [4;36;1mUser Update (0.000399)[0m   [0;1mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.795249', "email" = E'test@foo.bar', "visits_count" = 1, "remember_token" = E'3f57d1a2ffcd8d58dacde0beb966de898f34ce01', "remember_token_expires_at" = '2008-04-25 10:14:32.796637', "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = '2008-04-11 03:14:32.796884', "crypted_password" = E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', "updated_at" = '2008-04-11 03:14:32.797062', "salt" = E'98f379690366d99e43404637f5bb35203e897273' WHERE "id" = 184[0m
+  [4;35;1mSQL (0.000077)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000268)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000393)[0m   [0mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test@foo.bar') [0m
+  [4;36;1mUser Create (0.000280)[0m   [0;1mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'98f379690366d99e43404637f5bb35203e897273', NULL, NULL, '2008-04-11 03:14:32.800040', E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', 0, E'le quentin', NULL, NULL, E'test@foo.bar', '2008-04-11 03:14:32.800040')[0m
+  [4;35;1mSQL (0.000117)[0m   [0mSELECT currval('users_id_seq')[0m
+  [4;36;1mUser Update (0.000667)[0m   [0;1mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.800040', "email" = E'test@foo.bar', "visits_count" = 1, "remember_token" = E'3f57d1a2ffcd8d58dacde0beb966de898f34ce01', "remember_token_expires_at" = '2008-04-25 10:14:32.801478', "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = '2008-04-11 03:14:32.801740', "crypted_password" = E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', "updated_at" = '2008-04-11 03:14:32.801923', "salt" = E'98f379690366d99e43404637f5bb35203e897273' WHERE "id" = 185[0m
+  [4;35;1mSQL (0.000087)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000062)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000292)[0m   [0mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test@foo.bar') [0m
+  [4;36;1mUser Create (0.000281)[0m   [0;1mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'98f379690366d99e43404637f5bb35203e897273', NULL, NULL, '2008-04-11 03:14:32.805474', E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', 0, E'le quentin', NULL, NULL, E'test@foo.bar', '2008-04-11 03:14:32.805474')[0m
+  [4;35;1mSQL (0.000119)[0m   [0mSELECT currval('users_id_seq')[0m
+  [4;36;1mSQL (0.000485)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test2@foo.bar' AND "users".id <> 186) [0m
+  [4;35;1mUser Update (0.000340)[0m   [0mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.805474', "email" = E'test2@foo.bar', "visits_count" = 0, "remember_token" = NULL, "remember_token_expires_at" = NULL, "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = NULL, "crypted_password" = E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', "updated_at" = '2008-04-11 03:14:32.807937', "salt" = E'98f379690366d99e43404637f5bb35203e897273' WHERE "id" = 186[0m
+  [4;36;1mUser Load (0.000641)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = E'test2@foo.bar') LIMIT 1[0m
+  [4;35;1mSQL (0.000086)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000063)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000246)[0m   [0mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test@foo.bar') [0m
+  [4;36;1mUser Create (0.000265)[0m   [0;1mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'98f379690366d99e43404637f5bb35203e897273', NULL, NULL, '2008-04-11 03:14:32.811942', E'3e45a8d14f1e30adeb6e7165d46ed631b1e5ea4d', 0, E'le quentin', NULL, NULL, E'test@foo.bar', '2008-04-11 03:14:32.811942')[0m
+  [4;35;1mSQL (0.000119)[0m   [0mSELECT currval('users_id_seq')[0m
+  [4;36;1mSQL (0.000285)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'test@foo.bar' AND "users".id <> 187) [0m
+  [4;35;1mUser Update (0.000474)[0m   [0mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.811942', "email" = E'test@foo.bar', "visits_count" = 0, "remember_token" = NULL, "remember_token_expires_at" = NULL, "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = NULL, "crypted_password" = E'2f550611d20e9a1a88e44437e1137aa31ad177b8', "updated_at" = '2008-04-11 03:14:32.814265', "salt" = E'98f379690366d99e43404637f5bb35203e897273' WHERE "id" = 187[0m
+  [4;36;1mUser Load (0.000363)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = E'test@foo.bar') LIMIT 1[0m
+  [4;35;1mSQL (0.000073)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000090)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Create (0.000309)[0m   [0mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(NULL, NULL, NULL, '2008-04-11 03:14:32.820507', NULL, 0, NULL, NULL, NULL, NULL, '2008-04-11 03:14:32.820507')[0m
+  [4;36;1mSQL (0.000131)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mSQL (0.000080)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000094)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000323)[0m   [0mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quentin@example.com') [0m
+  [4;36;1mUser Create (0.000287)[0m   [0;1mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'75525cfd5c27cf6cc6543642ed8200db1dc08a1d', NULL, NULL, '2008-04-11 03:14:32.826683', E'4e3441d0c9091be83f6bf3251f53a93eb9a97bbb', 0, E'le quentin', NULL, NULL, E'quentin@example.com', '2008-04-11 03:14:32.826683')[0m
+  [4;35;1mSQL (0.000116)[0m   [0mSELECT currval('users_id_seq')[0m
+WARNING: Can't mass-assign these protected attributes: created_at
+  [4;36;1mSQL (0.000264)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quentin@example.com' AND "users".id <> 189) [0m
+  [4;35;1mUser Update (0.000343)[0m   [0mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.826683', "email" = E'quentin@example.com', "visits_count" = 0, "remember_token" = NULL, "remember_token_expires_at" = NULL, "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = NULL, "crypted_password" = E'4e3441d0c9091be83f6bf3251f53a93eb9a97bbb', "updated_at" = '2008-04-11 03:14:32.828804', "salt" = E'75525cfd5c27cf6cc6543642ed8200db1dc08a1d' WHERE "id" = 189[0m
+  [4;36;1mSQL (0.000077)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000074)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000254)[0m   [0;1mSELECT email FROM "users" WHERE (LOWER("users".email) = E'quentin@example.com') [0m
+  [4;35;1mUser Create (0.000250)[0m   [0mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(E'75525cfd5c27cf6cc6543642ed8200db1dc08a1d', NULL, NULL, '2008-04-11 03:14:32.831466', E'4e3441d0c9091be83f6bf3251f53a93eb9a97bbb', 0, E'le quentin', NULL, NULL, E'quentin@example.com', '2008-04-11 03:14:32.831466')[0m
+  [4;36;1mSQL (0.000117)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mUser Update (0.000333)[0m   [0mUPDATE "users" SET "created_at" = '2008-04-11 03:14:32.831466', "email" = E'quentin@example.com', "visits_count" = 0, "remember_token" = NULL, "remember_token_expires_at" = NULL, "nickname" = E'le quentin', "permalink" = NULL, "last_login_at" = NULL, "crypted_password" = E'4e3441d0c9091be83f6bf3251f53a93eb9a97bbb', "updated_at" = '2008-04-11 03:14:32.832715', "salt" = E'75525cfd5c27cf6cc6543642ed8200db1dc08a1d' WHERE "id" = 190[0m
+  [4;36;1mSQL (0.000076)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000090)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000176)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000115)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000730)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000120)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000743)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000152)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000768)[0m   [0;1mSELECT key FROM "apps" WHERE ("apps".key = E'myapp') [0m
+  [4;35;1mSQL (0.000204)[0m   [0mSELECT port FROM "apps" WHERE ("apps".port = 3100) [0m
+  [4;36;1mSQL (0.000078)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000111)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#destroy (for 0.0.0.0 at 2008-04-11 03:14:32) [DELETE]
+  Session ID: 
+  Parameters: {"action"=>"destroy", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00274 (365 reqs/sec) | DB: 0.02355 (860%) | 302 Found [http://test.host/login]
+  [4;36;1mSQL (0.000169)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000068)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#destroy (for 0.0.0.0 at 2008-04-11 03:14:33) [DELETE]
+  Session ID: 
+  Parameters: {"action"=>"destroy", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00038 (2666 reqs/sec) | DB: 0.00024 (63%) | 302 Found [http://test.host/login]
+  [4;36;1mSQL (0.000116)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000077)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#destroy (for 0.0.0.0 at 2008-04-11 03:14:33) [DELETE]
+  Session ID: 
+  Parameters: {"action"=>"destroy", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00035 (2874 reqs/sec) | DB: 0.00019 (55%) | 302 Found [http://test.host/login]
+  [4;36;1mSQL (0.000105)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000073)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#destroy (for 0.0.0.0 at 2008-04-11 03:14:33) [DELETE]
+  Session ID: 
+  Parameters: {"action"=>"destroy", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00036 (2770 reqs/sec) | DB: 0.00018 (49%) | 302 Found [http://test.host/login]
+  [4;36;1mSQL (0.000192)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000086)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#destroy (for 0.0.0.0 at 2008-04-11 03:14:33) [DELETE]
+  Session ID: 
+  Parameters: {"action"=>"destroy", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00042 (2409 reqs/sec) | DB: 0.00028 (66%) | 302 Found [http://test.host/login]
+  [4;36;1mSQL (0.000141)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000102)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "action"=>"create", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00109 (917 reqs/sec) | Rendering: 0.00067 (61%) | DB: 0.00024 (22%) | 200 OK [http://test.host/login?]
+  [4;36;1mSQL (0.000114)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000099)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "action"=>"create", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00075 (1334 reqs/sec) | Rendering: 0.00037 (49%) | DB: 0.00021 (28%) | 200 OK [http://test.host/login?]
+  [4;36;1mSQL (0.000079)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000082)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "action"=>"create", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00070 (1424 reqs/sec) | Rendering: 0.00034 (49%) | DB: 0.00016 (22%) | 200 OK [http://test.host/login?]
+  [4;36;1mSQL (0.000081)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000075)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password"=>"password", "email"=>"user"}, "action"=>"create", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00075 (1326 reqs/sec) | Rendering: 0.00037 (48%) | DB: 0.00016 (20%) | 200 OK [http://test.host/login?user%5Bemail%5D=user&user%5Bpassword%5D=password]
+  [4;36;1mSQL (0.000100)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000111)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password"=>"password", "email"=>"derek", "remember_me"=>"1"}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00045 (2216 reqs/sec) | DB: 0.00021 (46%) | 302 Found [http://test.host/login?user%5Bemail%5D=derek&user%5Bpassword%5D=password&user%5Bremember_me%5D=1]
+  [4;36;1mSQL (0.000129)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000090)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password"=>"password", "email"=>"derek", "remember_me"=>"1"}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00046 (2150 reqs/sec) | DB: 0.00022 (47%) | 302 Found [http://test.host/login?user%5Bemail%5D=derek&user%5Bpassword%5D=password&user%5Bremember_me%5D=1]
+  [4;36;1mSQL (0.000109)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000097)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password_confirmation"=>"password", "nickname"=>"user", "password"=>"password", "email"=>"user@example.com"}, "action"=>"create", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00265 (376 reqs/sec) | Rendering: 0.00058 (21%) | DB: 0.00021 (7%) | 200 OK [http://test.host/login?user%5Bemail%5D=user%40example.com&user%5Bnickname%5D=user&user%5Bpassword%5D=password&user%5Bpassword_confirmation%5D=password]
+  [4;36;1mSQL (0.000147)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000104)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password_confirmation"=>"password", "nickname"=>"user", "password"=>"password", "email"=>"user@example.com"}, "continue"=>"http://example.appdrop.com", "action"=>"create", "controller"=>"login"}
+Redirected to http://example.appdrop.com
+Completed in 0.00048 (2062 reqs/sec) | DB: 0.00025 (51%) | 302 Found [http://test.host/login?continue=http%3A%2F%2Fexample.appdrop.com&user%5Bemail%5D=user%40example.com&user%5Bnickname%5D=user&user%5Bpassword%5D=password&user%5Bpassword_confirmation%5D=password]
+  [4;36;1mSQL (0.000134)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000125)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password_confirmation"=>"password", "nickname"=>"user", "password"=>"password", "email"=>"user@example.com"}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00048 (2062 reqs/sec) | DB: 0.00026 (53%) | 302 Found [http://test.host/login?user%5Bemail%5D=user%40example.com&user%5Bnickname%5D=user&user%5Bpassword%5D=password&user%5Bpassword_confirmation%5D=password]
+  [4;36;1mSQL (0.000130)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000072)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password_confirmation"=>"password", "nickname"=>"user", "password"=>"password", "email"=>"user@example.com"}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00034 (2957 reqs/sec) | DB: 0.00020 (59%) | 302 Found [http://test.host/login?user%5Bemail%5D=user%40example.com&user%5Bnickname%5D=user&user%5Bpassword%5D=password&user%5Bpassword_confirmation%5D=password]
+  [4;36;1mSQL (0.000104)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000100)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "continue"=>"http://myapp.appdrop.com/continue", "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00036 (2794 reqs/sec) | DB: 0.00020 (56%) | 302 Found [http://test.host/login?&continue=http%3A%2F%2Fmyapp.appdrop.com%2Fcontinue]
+  [4;36;1mSQL (0.000091)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000119)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "continue"=>"http://myapp.appdrop.com/continue", "action"=>"create", "controller"=>"login"}
+Redirected to http://myapp.appdrop.com/continue
+Completed in 0.00031 (3269 reqs/sec) | DB: 0.00021 (68%) | 302 Found [http://test.host/login?&continue=http%3A%2F%2Fmyapp.appdrop.com%2Fcontinue]
+  [4;36;1mSQL (0.000115)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000065)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "continue"=>"http://myapp.appdrop.com/continue", "action"=>"create", "controller"=>"login"}
+Redirected to http://myapp.appdrop.com/continue
+Completed in 0.00032 (3086 reqs/sec) | DB: 0.00018 (55%) | 302 Found [http://test.host/login?&continue=http%3A%2F%2Fmyapp.appdrop.com%2Fcontinue]
+  [4;36;1mSQL (0.000134)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000077)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00032 (3077 reqs/sec) | DB: 0.00021 (64%) | 302 Found [http://test.host/login?]
+  [4;36;1mSQL (0.000117)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000467)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00031 (3236 reqs/sec) | DB: 0.00058 (189%) | 302 Found [http://test.host/login?]
+  [4;36;1mSQL (0.000141)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000061)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00028 (3545 reqs/sec) | DB: 0.00020 (71%) | 302 Found [http://test.host/login?]
+  [4;36;1mSQL (0.000094)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000073)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#create (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"user"=>{"password"=>"password", "email"=>"user"}, "action"=>"create", "controller"=>"login"}
+Redirected to http://test.host/
+Completed in 0.00029 (3483 reqs/sec) | DB: 0.00017 (58%) | 302 Found [http://test.host/login?user%5Bemail%5D=user&user%5Bpassword%5D=password]
+  [4;36;1mSQL (0.000105)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000133)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#authorize (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"continue"=>"http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/", "action"=>"authorize", "controller"=>"login"}
+  [4;36;1mSQL (0.000139)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000099)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#authorize (for 0.0.0.0 at 2008-04-11 03:14:33) [POST]
+  Session ID: 
+  Parameters: {"continue"=>"http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/", "action"=>"authorize", "controller"=>"login"}
+Redirected to http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/
+Completed in 0.00024 (4219 reqs/sec) | DB: 0.00048 (200%) | 302 Found [http://test.host/authorize?continue=http%3A%2F%2Fnot-fug-this.appspot.com%2F_ah%2Flogin%253Fcontinue%253Dhttp%3A%2F%2Fnot-fug-this.appspot.com%2F]
+  [4;36;1mSQL (0.000090)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000103)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#login (for 0.0.0.0 at 2008-04-11 03:14:33) [GET]
+  Session ID: 
+  Parameters: {"continue"=>"http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/", "action"=>"login", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/authorize
+Completed in 0.00068 (1477 reqs/sec) | Rendering: 0.00036 (53%) | DB: 0.00019 (28%) | 200 OK [http://test.host/login?continue=http%3A%2F%2Fnot-fug-this.appspot.com%2F_ah%2Flogin%253Fcontinue%253Dhttp%3A%2F%2Fnot-fug-this.appspot.com%2F]
+  [4;36;1mSQL (0.000138)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000097)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#login (for 0.0.0.0 at 2008-04-11 03:14:33) [GET]
+  Session ID: 
+  Parameters: {"continue"=>"http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/", "action"=>"login", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/invalid
+Completed in 0.00069 (1457 reqs/sec) | Rendering: 0.00041 (59%) | DB: 0.00024 (34%) | 200 OK [http://test.host/login?continue=http%3A%2F%2Fnot-fug-this.appspot.com%2F_ah%2Flogin%253Fcontinue%253Dhttp%3A%2F%2Fnot-fug-this.appspot.com%2F]
+  [4;36;1mSQL (0.000108)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000076)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#login (for 0.0.0.0 at 2008-04-11 03:14:33) [GET]
+  Session ID: 
+  Parameters: {"continue"=>"http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/", "action"=>"login", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/invalid
+Completed in 0.00063 (1592 reqs/sec) | Rendering: 0.00036 (57%) | DB: 0.00018 (29%) | 200 OK [http://test.host/login?continue=http%3A%2F%2Fnot-fug-this.appspot.com%2F_ah%2Flogin%253Fcontinue%253Dhttp%3A%2F%2Fnot-fug-this.appspot.com%2F]
+  [4;36;1mSQL (0.000268)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000106)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#login (for 0.0.0.0 at 2008-04-11 03:14:33) [GET]
+  Session ID: 
+  Parameters: {"continue"=>"http://fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://fug-this.appspot.com/", "action"=>"login", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00076 (1312 reqs/sec) | Rendering: 0.00040 (52%) | DB: 0.00037 (49%) | 200 OK [http://test.host/login?continue=http%3A%2F%2Ffug-this.appspot.com%2F_ah%2Flogin%253Fcontinue%253Dhttp%3A%2F%2Ffug-this.appspot.com%2F]
+  [4;36;1mSQL (0.000097)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000078)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#login (for 0.0.0.0 at 2008-04-11 03:14:33) [GET]
+  Session ID: 
+  Parameters: {"continue"=>"http://fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://fug-this.appspot.com/", "action"=>"login", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00070 (1436 reqs/sec) | Rendering: 0.00036 (51%) | DB: 0.00017 (25%) | 200 OK [http://test.host/login?continue=http%3A%2F%2Ffug-this.appspot.com%2F_ah%2Flogin%253Fcontinue%253Dhttp%3A%2F%2Ffug-this.appspot.com%2F]
+  [4;36;1mSQL (0.000085)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000075)[0m   [0mBEGIN[0m
+
+
+Processing LoginController#login (for 0.0.0.0 at 2008-04-11 03:14:33) [GET]
+  Session ID: 
+  Parameters: {"action"=>"login", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+Completed in 0.00066 (1520 reqs/sec) | Rendering: 0.00035 (53%) | DB: 0.00016 (24%) | 200 OK [http://test.host/login]
+  [4;36;1mSQL (0.000078)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000136)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000072)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000144)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000074)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.000096)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000071)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.000226)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000052)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000078)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000075)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.000157)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000053)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000080)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000074)[0m   [0mROLLBACK[0m

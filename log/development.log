@@ -3708,3 +3708,274 @@ ActionController::RoutingError (No route matches "/authorize" with {:method=>:po
     /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
 
 Rendering /Users/jchris/code/gapps/appdrop/appdrop/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:16:42) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;35;1mUser Load (0.000472)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.02631 (38 reqs/sec) | Rendering: 0.02224 (84%) | DB: 0.00047 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:17:07) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mUser Load (0.000482)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.10221 (9 reqs/sec) | Rendering: 0.09955 (97%) | DB: 0.00048 (0%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:17:13) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;35;1mUser Load (0.000472)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.02529 (39 reqs/sec) | Rendering: 0.02270 (89%) | DB: 0.00047 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:17:23) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mUser Load (0.000557)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.02815 (35 reqs/sec) | Rendering: 0.02554 (90%) | DB: 0.00056 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:18:49) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;35;1mSQL (0.032280)[0m   [0mSELECT count(*) AS count_all FROM "apps" [0m
+
+
+ActionView::TemplateError (undefined method `empty?' for 1:Fixnum) on line #2 of pages/index.html.erb:
+1: <h2>Host your <a href="http://appengine.google.com">AppEngine</a> applications.</h2>
+2: <p>Or you can browse the <%= pluralize('application',App.count) %> we already host.</p>
+    vendor/rails/activesupport/lib/active_support/inflector.rb:109:in `pluralize'
+    vendor/rails/actionpack/lib/action_view/helpers/text_helper.rb:173:in `pluralize'
+    app/views/pages/index.html.erb:2:in `_run_erb_47app47views47pages47index46html46erb'
+    vendor/rails/actionpack/lib/action_view/base.rb:344:in `send'
+    vendor/rails/actionpack/lib/action_view/base.rb:344:in `execute'
+    vendor/rails/actionpack/lib/action_view/template_handlers/compilable.rb:29:in `send'
+    vendor/rails/actionpack/lib/action_view/template_handlers/compilable.rb:29:in `render'
+    vendor/rails/actionpack/lib/action_view/template.rb:27:in `render'
+    vendor/rails/actionpack/lib/action_view/base.rb:289:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:244:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1106:in `render_for_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:838:in `render_with_no_layout'
+    vendor/rails/actionpack/lib/action_controller/layout.rb:253:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:51:in `render'
+    vendor/rails/activesupport/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:51:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1155:in `default_render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1161:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:579:in `call_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /opt/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:199:in `perform_action_without_caching'
+    vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:526:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:526:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:123:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:387:in `process'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:156:in `handle_request'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:97:in `dispatch'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:94:in `synchronize'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:94:in `dispatch'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:110:in `dispatch_cgi'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:11:in `dispatch'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /opt/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+
+Rendering /Users/jchris/code/gapps/appdrop/appdrop/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:19:00) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000206)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000516)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.03684 (27 reqs/sec) | Rendering: 0.03397 (92%) | DB: 0.03300 (89%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:19:22) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000208)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000466)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.03606 (27 reqs/sec) | Rendering: 0.03319 (92%) | DB: 0.00067 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:23:41) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000207)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000465)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.03665 (27 reqs/sec) | Rendering: 0.03387 (92%) | DB: 0.00067 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:24:40) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000210)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000611)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.10711 (9 reqs/sec) | Rendering: 0.10421 (97%) | DB: 0.00082 (0%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:25:01) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000206)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000458)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.03712 (26 reqs/sec) | Rendering: 0.03430 (92%) | DB: 0.00066 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:25:07) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000219)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000463)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.04055 (24 reqs/sec) | Rendering: 0.03785 (93%) | DB: 0.00068 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:25:17) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000207)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000495)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.03656 (27 reqs/sec) | Rendering: 0.03373 (92%) | DB: 0.00070 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:26:13) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000214)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;35;1mUser Load (0.000521)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.11495 (8 reqs/sec) | Rendering: 0.11220 (97%) | DB: 0.00073 (0%) | 200 OK [http://local.grabb.it/]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2008-04-11 03:26:18) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"login", "controller"=>"login"}
+  [4;36;1mUser Load (0.000541)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Redirected to http://local.grabb.it:3001/
+Completed in 0.02443 (40 reqs/sec) | DB: 0.00054 (2%) | 302 Found [http://local.grabb.it/login]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:26:18) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;35;1mSQL (0.000209)[0m   [0mSELECT count(*) AS count_all FROM "apps" [0m
+  [4;36;1mUser Load (0.000477)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Completed in 0.03513 (28 reqs/sec) | Rendering: 0.03241 (92%) | DB: 0.00069 (1%) | 200 OK [http://local.grabb.it/]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2008-04-11 03:26:23) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"continue"=>"http://example.appdrop.com/", "action"=>"login", "controller"=>"login"}
+  [4;35;1mApp Load (0.000361)[0m   [0mSELECT * FROM "apps" WHERE ("apps"."key" = E'example') LIMIT 1[0m
+  [4;36;1mUser Load (0.000483)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering login/authorize
+Completed in 0.03793 (26 reqs/sec) | Rendering: 0.00413 (10%) | DB: 0.00084 (2%) | 200 OK [http://local.grabb.it/login?continue=http://example.appdrop.com/]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2008-04-11 03:26:47) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"continue"=>"http://example.appdrop.com/", "action"=>"login", "controller"=>"login"}
+  [4;35;1mApp Load (0.004578)[0m   [0mSELECT * FROM "apps" WHERE ("apps"."key" = E'example') LIMIT 1[0m
+  [4;36;1mUser Load (0.000454)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering login/authorize
+Completed in 0.12174 (8 reqs/sec) | Rendering: 0.08123 (66%) | DB: 0.00503 (4%) | 200 OK [http://local.grabb.it/login?continue=http://example.appdrop.com/]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2008-04-11 03:27:04) [GET]
+  Session ID: BAh7CDoJdXNlcmkGOg5yZXR1cm5fdG8wIgpmbGFzaElDOidBY3Rpb25Db250%0Acm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--40009be5a09c8f3d68e9ff5d6a82f514b9d4a18b
+  Parameters: {"continue"=>"http://example.appdrop.com/", "action"=>"login", "controller"=>"login"}
+  [4;35;1mApp Load (0.000418)[0m   [0mSELECT * FROM "apps" WHERE ("apps"."key" = E'example') LIMIT 1[0m
+  [4;36;1mUser Load (0.000500)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering login/authorize
+Completed in 0.03668 (27 reqs/sec) | Rendering: 0.00402 (10%) | DB: 0.00092 (2%) | 200 OK [http://local.grabb.it/login?continue=http://example.appdrop.com/]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2008-04-11 03:27:31) [GET]
+  Session ID: ca219edaa11e445ea57d0da987dcccff
+  Parameters: {"continue"=>"http://example.appdrop.com/", "action"=>"login", "controller"=>"login"}
+  [4;35;1mApp Load (0.000353)[0m   [0mSELECT * FROM "apps" WHERE ("apps"."key" = E'example') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering login/login
+  [4;36;1mSQL (0.000152)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Create (0.000376)[0m   [0mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(NULL, '2008-04-11 03:27:31.236614', NULL, '2008-04-11 03:27:31.237176', NULL, 1, NULL, '2008-04-25 10:27:31.236302', E'1b3fcde1b3341bce339eac2c4e9e92b28db9cd88', NULL, '2008-04-11 03:27:31.237176')[0m
+  [4;36;1mSQL (0.000274)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mSQL (0.011931)[0m   [0mCOMMIT[0m
+Completed in 0.05208 (19 reqs/sec) | Rendering: 0.01044 (20%) | DB: 0.01309 (25%) | 200 OK [http://localhost/login?continue=http://example.appdrop.com/]
+
+
+Processing LoginController#login (for 127.0.0.1 at 2008-04-11 03:27:38) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%0ASGFzaHsABjoKQHVzZWR7AA%3D%3D--f6300f835daa4ae50f6ae3abf986b566924f9554
+  Parameters: {"action"=>"login", "controller"=>"login"}
+Rendering template within layouts/application
+Rendering login/login
+  [4;36;1mSQL (0.000129)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Create (0.000295)[0m   [0mINSERT INTO "users" ("salt", "last_login_at", "permalink", "updated_at", "crypted_password", "visits_count", "nickname", "remember_token_expires_at", "remember_token", "email", "created_at") VALUES(NULL, '2008-04-11 03:27:38.311130', NULL, '2008-04-11 03:27:38.311647', NULL, 1, NULL, '2008-04-25 10:27:38.310806', E'f2ab58bbd821eef2d7dcc549d7f8e1864df122e9', NULL, '2008-04-11 03:27:38.311647')[0m
+  [4;36;1mSQL (0.000388)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mSQL (0.011624)[0m   [0mCOMMIT[0m
+Completed in 0.04107 (24 reqs/sec) | Rendering: 0.00834 (20%) | DB: 0.01244 (30%) | 200 OK [http://localhost/login]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2008-04-11 03:39:26) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%0ASGFzaHsABjoKQHVzZWR7AA%3D%3D--f6300f835daa4ae50f6ae3abf986b566924f9554
+  Parameters: {"action"=>"index", "controller"=>"pages"}
+Rendering template within layouts/application
+Rendering pages/index
+  [4;36;1mSQL (0.000224)[0m   [0;1mSELECT count(*) AS count_all FROM "apps" [0m
+Completed in 0.01818 (55 reqs/sec) | Rendering: 0.01587 (87%) | DB: 0.00022 (1%) | 200 OK [http://localhost/]

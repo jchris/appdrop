@@ -1,15 +1,10 @@
 controllers
 
-login
-
-apps
-
 views
 
 /
   link to login/signup
   link to browse apps
-  link to about
 
 /login - this is the main page users see
   ability to signup or login
@@ -22,8 +17,9 @@ views
 
 /home
   list of your apps
+  link to make a new app
   
-/admin/fug-this
+/home/fug-this
   control panel for your app
   maybe just mount the google dev console here?
 
@@ -34,9 +30,9 @@ views
   public info page for app
   link to app
   
-/about
-  where we say we could disappear at any moment
 
+====
+config zone
 
   # paths
   mkdir -p /var/apps/hello-world/data
