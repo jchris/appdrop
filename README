@@ -36,3 +36,57 @@ views
   
 /about
   where we say we could disappear at any moment
+
+
+  # paths
+  mkdir -p /var/apps/hello-world/data
+  mkdir -p /var/apps/hello-world/log
+  # also echo the assigned port into a file the dir just cause
+
+
+  #nginx conf
+  server {
+    listen   80;
+    server_name  hello-world.appdrop.com;
+    access_log  /var/apps/hello-world/log/access.log;
+    location / {
+      proxy_pass http://localhost:3000;
+    }
+  }
+
+  #dev server start
+
+  /root/packages/google_appengine/dev_appserver.py -p 3000 --datastore_path=/var/apps/hello-world/data/app.datastore --history_path=/var/apps/hello-world/data/app.datastore.history /var/apps/hello-world/app >> /var/apps/hello-world/log/server.log 2>&1 &
+
+  # reload the confs
+  /etc/init.d/nginx reload
+
+
+  ############################################## fug-this
+
+  # paths
+  mkdir -p /var/apps/fug-this/data
+  mkdir -p /var/apps/fug-this/log
+  # also echo the assigned port into a file the dir just cause
+
+
+  #nginx conf
+  server {
+    listen   80;
+    server_name  fug-this.appdrop.com;
+    access_log  /var/apps/fug-this/log/access.log;
+    location / {
+      proxy_set_header  X-Real-IP  $remote_addr;
+      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_redirect false;
+      proxy_pass http://localhost:3001;
+    }
+  }
+
+  #dev server start
+
+  /root/packages/google_appengine/dev_appserver.py -p 3001 --datastore_path=/var/apps/fug-this/data/app.datastore --history_path=/var/apps/fug-this/data/app.datastore.history /var/apps/fug-this/app >> /var/apps/fug-this/log/server.log 2>&1 &
+
+
+
