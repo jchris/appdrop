@@ -1,41 +1,60 @@
 class LoginController < ApplicationController
 
+  before_filter :login_required, :only => [:authorize, :destroy]
+
   def login
     if params[:continue]
       key = /https?\:\/\/([\-a-z0-9]*)/.match(params[:continue])[1]
       @app = App.find_by_key(key)
       unless @app
-        render :template => 'invalid'
+        render :action => 'invalid'
         return
       end
     end
     if current_user
-      render :template => 'authorize'
+      unless @app
+        redirect_back_or_default('/')
+        return
+      end
+      @title = "Authorize Login"
+      render :action => 'authorize'
     else
-      render :template => 'login'
+      @title = "Login or Signup"
+      @user = User.new
+      render :action => 'login'
     end
   end
   
+  def authorize
+    key = /https?\:\/\/([\-a-z0-9]*)/.match(params[:continue])[1]
+    @app = App.find_by_key(key)
+    raise unless @app
+    redirect_to params[:continue]
+  end
+  
   def create
-    self.current_user = User.authenticate(params[:email], params[:password])
+    self.current_user = User.authenticate(params[:user][:email], params[:user][:password])
     if logged_in?
-      if params[:remember_me] == "1"
+      if params[:user][:remember_me] == "1"
         self.current_user.remember_me unless self.current_user.remember_token?
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
+      flash[:notice] = "Logged in successfully."
       continue
-      flash[:notice] = "Logged in successfully"
-    elsif params[:password_confirmation]
-      # create a new user from the data
-      @user = User.new(params.extract(:email, :password, :password_confirmation, :nickname))
+    elsif !params[:user][:password_confirmation].blank?
+      @user = User.new(params[:user])
       if @user.save
+        flash[:notice] = "Signup successful. Welcome to AppDrop!"
+        self.current_user = @user
+        @user.remember_me if params[:user][:remember_me] == "1"
         continue
-        flash[:notice] = "Signup successful"      
       else
-        render :template => 'login'
+        render :action => 'login'
       end
     else
-      render :template => 'login'
+      @user = User.new
+      flash[:notice] = "Login failed. Try again?"
+      render :action => 'login'
     end
   end
 
@@ -44,7 +63,7 @@ class LoginController < ApplicationController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default('/')
+    continue
   end
 
   private 

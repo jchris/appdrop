@@ -29,7 +29,18 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
+  map.connect 'login', :controller => 'login', :action => 'login', 
+    :conditions => {:method => :get}
+
+  map.connect '/login', :controller => 'login', :action => 'create', 
+    :conditions => {:method => :post}
+
+  map.connect '/login', :controller => 'login', :action => 'destroy', 
+    :conditions => {:method => :delete}
+
+  map.connect '/authorize', :controller => 'login', :action => 'authorize'
+  
   # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id.:format'
 end

@@ -1,0 +1,44 @@
+body {
+  font-family: Century, Georgia, sans-serif;
+  background-color: #eef;
+}
+#container {
+  width:800px;
+  margin:0 auto;
+}
+form {
+  width:80%;
+  margin:0 auto;
+}
+form label {
+  width:8em;
+  text-align:right;
+  padding-right:10px;
+  display:block;
+  float:left;
+}
+#flash {
+  padding:8px;
+  width:40%;
+  margin:8px auto;
+  background:#ff7;
+  text-align:center;
+}
+.errorExplanation {
+  border:2px solid #e88;
+  padding:10px;
+  margin:10px auto;
+  width:50%;
+}
+ol {
+  padding:0;
+  list-style: none;
+}
+form li {
+  clear:left;
+  padding:4px;
+}
+input[type=submit] {
+  margin:20px;
+  font-size:2em;
+}

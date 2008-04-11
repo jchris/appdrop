@@ -1,3 +1,14 @@
-<%= form_for :user do %>
-
-<%= end %>
+<% if @app %>
+<p><a href="http://<%= @app.key %>.appdrop.com/"><%=h @app.name %></a> invites you login using your AppDrop account.</p>
+<% else %>
+<% end %>
+<% a_form_for @user, :url => '/login' do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :email %>
+  <%= f.password_field :password %>
+  <%= f.check_box :remember_me %>
+  <p>New here? Please confirm your password and set a nickname, and you&apos;ll be on your way. If you already have an account, you can ignore those fields and just click "Continue."</p>
+  <%= f.password_field :password_confirmation %>
+  <%= f.text_field :nickname %>
+  <%= submit_tag "Continue" %>
+<% end %>

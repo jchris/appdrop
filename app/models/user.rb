@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     email
   end
 
+  def to_s
+    nickname || email
+  end
+
   def self.find_by_param(*args)
     find_by_email *args
   end
