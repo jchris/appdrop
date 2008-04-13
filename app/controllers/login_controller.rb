@@ -7,7 +7,7 @@ class LoginController < ApplicationController
       key = /https?\:\/\/([\-a-z0-9]*)/.match(params[:continue])[1]
       @app = App.find_by_key(key)
       unless @app
-        render :action => 'invalid'
+        render :action => 'invalid', :status => '404 Not Found'
         return
       end
     end
@@ -28,8 +28,28 @@ class LoginController < ApplicationController
   def authorize
     key = /https?\:\/\/([\-a-z0-9]*)/.match(params[:continue])[1]
     @app = App.find_by_key(key)
-    raise unless @app
-    redirect_to params[:continue]
+    unless @app
+      render :action => 'invalid', :status => '404 Not Found'
+      return
+    end
+    continue
+  end
+  
+  def auth
+    @auth = AuthToken.find_by_token params[:token]
+    raise ActiveRecord::RecordNotFound unless @auth
+    key = /https?\:\/\/([\-a-z0-9]*)/.match(params[:app])[1]
+    @app = App.find_by_key(key)
+    if ((@app != @auth.app) || (@auth.used?))
+      render :text => "Invalid or Expired Token", :status => '403 Forbidden'
+      return
+    end
+    user = @auth.user
+    @auth.used = true
+    @auth.save
+    # todo - how do we know the app requesting it so we can do admin?
+    result = {:nickname => user.nickname, :email => user.email, :admin => (@app.user == @auth.user)}
+    render :json => result
   end
   
   def create
@@ -74,7 +94,15 @@ class LoginController < ApplicationController
       App.find_by_key(key)
     end
     if @app
-      redirect_to params[:continue]
+      # setup create auth token and append it
+      @auth = AuthToken.create :user => current_user, :app => @app
+      url = URI.parse(params[:continue])
+      if url.query
+        url.query << "&auth=#{@auth.token}"
+      else
+        url.query = "auth=#{@auth.token}"
+      end
+      redirect_to url.to_s
     else
       redirect_back_or_default('/')
     end

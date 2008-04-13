@@ -15,13 +15,14 @@ Spec::Runner.configure do |config|
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
 
 
-  def mock_user
-    user = mock_model(User, 
-      :id => 1, 
-      :login => 'flappy',
-      :email => 'flappy@email.com',
-      :password => '', :password_confirmation => ''
-    ) 
+  def mock_user(params = {})
+    params.merge!({:id => 1, 
+    :nickname => 'mr flappy',
+    :email => 'flappy@email.com',
+    :password => '', :password_confirmation => '',
+    :valid? => true,
+    :save => true})
+    mock_model(User, params) 
   end
 
   # == Fixtures

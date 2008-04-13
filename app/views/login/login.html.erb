@@ -10,5 +10,8 @@
   <p>New here? Please confirm your password and set a nickname, and you&apos;ll be on your way. If you already have an account, you can ignore those fields and just click "Continue."</p>
   <%= f.password_field :password_confirmation %>
   <%= f.text_field :nickname %>
+  <% if params[:continue] %>
+  <%= hidden_field_tag :continue, params[:continue] %>
+  <% end %>
   <%= submit_tag "Continue" %>
 <% end %>

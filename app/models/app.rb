@@ -11,6 +11,8 @@ class App < ActiveRecord::Base
   validates_length_of   :key, :in => (1..32)
   validates_inclusion_of :port, :in => (3000..65535)
   
+  belongs_to :user
+  
   def initialize_configuration
     make_app_dirs
     create_portfile

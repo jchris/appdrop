@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   # has_many :images, :as => :attachable
 
   # composed_of :tz, :class_name => 'TZInfo::Timezone', :mapping => %w( time_zone time_zone )
+  validates_format_of :nickname, :with => /\A[\-a-z0-9A-Z\s]*\Z/
+  validates_format_of :email, :with => /^[_\w\d+-]+(\.[_\w\d-]+)*@[^\.@][\w\d\.-]+$/
 
   validates_uniqueness_of :email, :case_sensitive => false
 

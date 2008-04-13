@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
     :conditions => {:method => :delete}
 
   map.connect '/authorize', :controller => 'login', :action => 'authorize'
+  map.connect '/auth', :controller => 'login', :action => 'auth'
   
   # Install the default routes as the lowest priority.
   # map.connect ':controller/:action/:id'

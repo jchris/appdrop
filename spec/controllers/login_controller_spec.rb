@@ -76,14 +76,71 @@ end
 
 describe LoginController, "POST /authorize while logged in with app info" do
   before(:each) do
-    @user = mock_model(User)
+    @user = mock_user
     controller.stub!(:current_user).and_return @user
     @app = mock_model(App)
     App.stub!(:find_by_key).and_return(@app)
+    @auth = mock_model(AuthToken, :token => 'authtoken')
+    AuthToken.stub!(:create).and_return(@auth)
+  end
+  it "should create an auth token" do 
+    AuthToken.should_receive(:create).with(:user => @user, :app => @app).and_return(@auth)
+    post :authorize, :continue => "http://not-fug-this.appspot.com/_ah/login"
   end
   it "should redirect to the app continue page" do
-    post :authorize, :continue => "http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/"
-    response.should redirect_to('http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/')
+    post :authorize, :continue => "http://not-fug-this.appspot.com/_ah/login"
+    response.should redirect_to('http://not-fug-this.appspot.com/_ah/login?auth=authtoken')
+  end
+end
+
+describe LoginController, "GET /auth?token=validtoken" do
+  before(:each) do
+    @auth = mock_model(AuthToken, :used? => false, :used= => true, :save => true, :token => 'validtoken', :user => @u1 = mock_user, :app => @app = mock_model(App, :user => @u2 = mock_model(User)))
+    AuthToken.stub!(:find_by_token).and_return(@auth)
+    App.stub!(:find_by_key).and_return(@app)
+  end
+  it "should find the token" do
+    AuthToken.should_receive(:find_by_token).with('validtoken').and_return(@auth)
+    get :auth, :token => 'validtoken', :app => 'http://myapp.appdrop.com/'
+  end
+  it "should return json of the user" do
+    get :auth, :token => 'validtoken', :app => 'http://myapp.appdrop.com/'
+    response.body.should match(/flappy/)
+    response.body.should match(/false/)
+  end
+  it "should say admin yes if the user owns the app" do
+    @app.stub!(:user).and_return(@u1)
+    get :auth, :token => 'validtoken', :app => 'http://myapp.appdrop.com/'
+    response.body.should match(/true/)
+  end
+  it "should mark the token used" do
+    @auth.should_receive(:used=).with(true)
+    get :auth, :token => 'validtoken', :app => 'http://myapp.appdrop.com/'
+  end  
+end
+
+describe LoginController, "GET /auth?token=usedtoken&app=http://myapp.appdrop.com/" do
+  before(:each) do
+    @auth = mock_model(AuthToken, :used? => true, :used= => true, :save => true, :token => 'validtoken', :user => mock_user, :app => @app = mock_model(App))
+    AuthToken.stub!(:find_by_token).and_return(@auth)
+    App.stub!(:find_by_key).and_return(@app)
+  end
+  it "should barf" do
+    get :auth, :token => 'validtoken', :app => 'http://myapp.appdrop.com/'
+    response.should_not be_success
+  end
+end
+
+describe LoginController, "GET /auth?token=wrongapp&app=http://myapp.appdrop.com/" do
+  before(:each) do
+    @auth = mock_model(AuthToken, :used? => false, :used= => true, :save => true, :token => 'validtoken', :user => mock_user, :app => @app = mock_model(App))
+    AuthToken.stub!(:find_by_token).and_return(@auth)
+    @app2 = mock_model(App)
+    App.stub!(:find_by_key).and_return(@app2)
+  end
+  it "should barf" do
+    get :auth, :token => 'wrongapp', :app => 'http://myapp.appdrop.com/'
+    response.should_not be_success
   end
 end
 
@@ -94,9 +151,8 @@ describe LoginController, "POST /authorize while logged in with bad app info" do
     App.stub!(:find_by_key).and_return(nil)
   end
   it "should barf" do
-    lambda do
-      post :authorize, :continue => "http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/"
-    end.should raise_error
+    post :authorize, :continue => "http://not-fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://not-fug-this.appspot.com/"
+    response.should_not be_success
   end
 end
 
@@ -106,8 +162,10 @@ describe LoginController, "POST /login without remember me and with app params" 
     @user = mock_user
     User.stub!(:authenticate).and_return(@user)
     controller.stub!(:logged_in?).and_return(true)
-    @app = mock_model(App)
+    @app = mock_model(App, :valid? => true)
     App.stub!(:find_by_key).and_return(@app)
+    @auth = mock_model(AuthToken, :token => 'authtoken')
+    AuthToken.stub!(:create).and_return(@auth)
   end
 
   it 'should authenticate user' do
@@ -125,7 +183,7 @@ describe LoginController, "POST /login without remember me and with app params" 
     response.cookies["auth_token"].should be_nil
   end
 
-  it "should redirect to root" do
+  it "should redirect to root without app params" do
     post :create, :user => {}
     response.should redirect_to('http://test.host/')
   end
@@ -134,9 +192,13 @@ describe LoginController, "POST /login without remember me and with app params" 
     App.should_receive(:find_by_key).with('myapp').and_return(@app)
     post :create, :continue => 'http://myapp.appdrop.com/continue', :user => {}
   end
-  it "should redirect to the app" do
-    post :create, :continue => 'http://myapp.appdrop.com/continue', :user => {}
-    response.should redirect_to('http://myapp.appdrop.com/continue')
+  it "should redirect to the app with auth token" do
+    post :create, :continue => "http://myapp.appdrop.com/login?continue=http://myapp.appdrop.com/", :user => {}
+    response.should redirect_to("http://myapp.appdrop.com/login?continue=http://myapp.appdrop.com/&auth=#{@auth.token}")
+  end
+  it "should create an auth token" do 
+    AuthToken.should_receive(:create).with(:user => @user, :app => @app).and_return(@auth)
+    post :create, :continue => "http://myapp.appdrop.com/login?continue=http://myapp.appdrop.com/", :user => {}
   end
 end
 
@@ -179,14 +241,16 @@ describe LoginController, "POST with password_confirmation" do
   end
   describe "when the user saves and there is app info" do
     before(:each) do
-      @user = mock_model(User, :to_param => "1", :save => true)
+      @user = mock_user
       User.stub!(:new).and_return(@user)
-      @app = mock_model(App)
+      @app = mock_model(App, :valid? => true)
       App.stub!(:find_by_key).and_return(@app)
+      @auth = mock_model(AuthToken, :token => 'authtoken')
+      AuthToken.stub!(:create).and_return(@auth)
     end
     it "should redirect to the app continue" do
       post :create, :user => {:email => 'user@example.com', :password => 'password', :password_confirmation => 'password', :nickname => 'user'}, :continue => 'http://example.appdrop.com'
-      response.should redirect_to('http://example.appdrop.com')
+      response.should redirect_to("http://example.appdrop.com?auth=#{@auth.token}")
     end
   end
   describe "when the user wont save (invalid)" do

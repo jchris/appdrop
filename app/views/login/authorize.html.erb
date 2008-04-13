@@ -2,6 +2,9 @@
 
 <p>To login to <%= h @app.name %>, click "Authorize" and you will be redirected to the application.</p>
 
-<form action="/authorize?continue=<%= params[:continue] %>" method="post">
-<%= submit_tag "Authorize" %>  
+<form action="/authorize" method="post">
+  <% if params[:continue] %>
+  <%= hidden_field_tag :continue, params[:continue] %>
+  <% end %>
+  <%= submit_tag "Authorize" %>  
 </form>

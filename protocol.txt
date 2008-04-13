@@ -1,0 +1,72 @@
+basic process: 
+
+fug-this links to google login page, user sumbits login form to google url. 
+google submit url redirects to login service on fug-this, with a long auth key. 
+*the fug-this login service presumably does a background call to goole to get the user info with which to set the cookies.*
+on the setting-cookie response, the fug-this service also redirects to the continue url.
+
+
+in dev mode
+
+fug this links to the login page on its own domain, which sets the cookie (unauthenticated) on submit and redirects back to the continue url...
+
+
+MY INSECURE AUTH PROTOCOL
+
+login link (or maybe it is easier to leave this alone and set the current version of it (_ah/login) to redirect to appdrop.com/login)?
+
+http://appdrop.com/login?continue=http://myapp.appdrop.com/_ah/login%3Fcontinue%3Dhttp://myapp.appdrop.com/
+
+draws form that submits to 
+
+http://appdrop.com/login or http://appdrop.com/authorize with continue as a hidden field
+
+the form reciever redirects to 
+
+http://myapp.appdrop.com/_ah/login?continue=http://myapp.appdrop.com/&auth=878this7is23my37expiring2unique4token
+
+
+which only has to query appdrop with that auth token to get the user info {email, nickname} 
+
+http://appdrop.com/token?auth=878this7is23my37expiring2unique4token
+
+which it uses to set the session cookie (this cookie needs to be tamperproof like rails, and feed into the User() service to work with the google-style API).
+
+logout link
+http://myapp.appdrop.com/_ah/logout?continue=http://myapp.appdrop.com/
+this is simple all it does is clear the session cookie.
+
+
+login process urls
+
+
+login link:
+
+https://www.google.com/accounts/ServiceLogin?service=ah&continue=http://fug-this.appspot.com/_ah/login%3Fcontinue%3Dhttp://fug-this.appspot.com/&ltmpl=gm&ahname=Fug+This&sig=807c87be37eb988d2f31e49df31eec42
+
+submit: 
+
+https://www.google.com/accounts/CheckCookie?continue=http%3A%2F%2Ffug-this.appspot.com%2F_ah%2Flogin%3Fcontinue%3Dhttp%3A%2F%2Ffug-this.appspot.com%2F&service=ah&chtml=LoginDoneHtml&sig=ae4756a21635ca68ba30502782128042
+
+redirect to: (maybe...)
+
+http://fug-this.appspot.com/_ah/login?continue=http://fug-this.appspot.com/&auth=DQAAAJMAAABGTctmtwe8silIW5aWbC74pTudJx3h9FI9Jl3irco9doE9gIVrHpqiNlvfFPDN9hEbzfJ3QQZYAZLxaiee8_4Nsr8DdZfS0HWa92FeJyBTiqhQBr6Ob_35XgAs7nuFVQE5cwybv8eC_fRp2LVxQdNXMR1oUofmkLMJ3tzAuq14zo1cguS4I45yFxmpVMSQCu73mgNEcLzzrFiUzIJKN9jM
+
+final url (http://fug-this.appspot.com/)
+
+
+logout urls
+
+logout link:
+
+http://fug-this.appspot.com/_ah/logout?continue=https://www.google.com/accounts/Logout%3Fcontinue%3Dhttp://fug-this.appspot.com/%26service%3Dah
+
+redirect via
+
+https://www.google.com/accounts/Logout?continue=http://fug-this.appspot.com/&service=ah
+
+http://www.google.com/accounts/Logout2?service=ah&ilo=1&ils=cl%2Cpages%2Cmail&ilc=0&continue=http%3A%2F%2Ffug-this.appspot.com%2F&zx=-63457890
+
+http://www.google.com/accounts/Logout2?service=ah&ilo=1&ils=cl&ilc=0&continue=http%3A%2F%2Ffug-this.appspot.com%2F&zx=889321816
+
+final url (http://fug-this.appspot.com/)

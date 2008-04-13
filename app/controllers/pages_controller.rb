@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
-  def index
-    @title = "Welcome"
+  def about
+    @title = "About AppDrop"
   end
   
 end
