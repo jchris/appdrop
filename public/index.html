@@ -12,18 +12,18 @@
       <h1>AppDrop | Welcome</h1>
     </div>
     <h2>Host your <a href="http://appengine.google.com">Google AppEngine</a> applications.</h2>
-<p>Or you can <a href="/apps">browse the applications</a> we already host.</p>
+<p>Or you can <a href="/apps">browse the applications</a> we already host. We&apos;re currently only suporting Python, because secretly we&apos;re just running the development SDK behind this glorious facade. As soon as Google releases Javascript or Ruby support, you can be we&apos;ll bet on it like dogs on bacon.</p>
 
-<p><strong>Confidence builder:</strong> AppDrop is a proof-of-concept, made to show that the AppEngine platform released by Google is not closed, and could easily be supported by other hosts. Unlike Google&apos;s project, we make no claims to be able to scale beyond a small amount of traffic. In fact, at AppDrop we reserve the right to shut the whole thing down any time we feel like it. We're running on EC2, so <em>our virtual machine could just disappear at any time</em>. We hope you enjoy AppDrop. If we see enough demand, we might decided to make serious go at it. Only time will tell.</p>
+<p><strong>Confidence builder:</strong> AppDrop is a proof-of-concept, to show that Google&apos;s App Engine platform can be ported to other hosts. Unlike Google&apos;s project, we make no claims to be able to scale beyond a small amount of traffic. We reserve the right to shut the whole thing down at any time. We're running on EC2, so <em>our virtual machine could just disappear</em>. We hope you enjoy AppDrop.</p>
 
 <h2><em>Lock in, we don&apos;t need no stinking lock in!</em></h2>
 
-<p><strong>Use at your own risk!</strong> Our current implementation makes no claims to be a finished product. For that reason, we&apos;re doing the simplest thing that could possibly work on most fronts. This means that we&apos;ve pretty much ignored security concerns, so for the time being please don&apos;t upload any applications that deal in sensitive data. Also, we&apos;ve yet to enable email support. This application and the EC2 Image that support it will be released for you to play with soon enough, so if email support, database scaling, or more secure logins are important to you, you&apos;ll have the opportunity to implement them yourself. </p>
+<p><strong>Use at your own risk!</strong> Our current implementation makes no claims to be a finished product. For that reason, we&apos;re doing the simplest thing that could possibly work on most fronts. We&apos;ve pretty much ignored security concerns, so for the time being please don&apos;t upload any applications that deal in sensitive data. Also, we&apos;ve yet to enable email support. The source code is available, so if email support, database scaling, or more secure logins are important to you, you have the ability to implement them yourself. </p>
 <p>(We&apos;ve made one enhancement over and above what Google&apos;s implementation supports: you can set your own nickname, rather than having it derived from your email address&mdash;hopefully this won&apos;t bring on unexpected bugs.)</p>
 
-<h2>Open Source</h2>
+<h2>Open Source (Apache 2.0 license)</h2>
 
-<p>Hacked together by <a href="http://jchris.mfdz.com">Chris Anderson</a> with moral support from <a href="http://bottlecaplabs.net/">Bottlecap Labs</a>. <a href="https://github.com/jchris/portable-google-app-engine-sdk/tree/master">Download the Modified App Engine SDK</a> or <a href="https://github.com/jchris/appdrop/tree/master">get the AppDrop.com source code (the Rails app you&apos;re looking at)</a>.</p>
+<p>Hacked together by <a href="http://jchris.mfdz.com">Chris Anderson</a> with moral support from <a href="http://bottlecaplabs.net/">Bottlecap Labs</a>. <a href="https://github.com/jchris/portable-google-app-engine-sdk/tree/master">Download the modified Portable App Engine SDK</a> or <a href="https://github.com/jchris/appdrop/tree/master">get the AppDrop.com source code (the Rails app you&apos;re looking at)</a>. The Amazon EC2 Image will be available publicly in the next few days.</p>
     </div>
     <div id="right-ads">
       <script type="text/javascript"><!--
