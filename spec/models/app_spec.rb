@@ -45,7 +45,12 @@ describe App, "update_code with a matching tarfile" do
     @app.update_code @tarfile
     IO.readlines("#{App::APP_ROOT}/guestbook/app/app.yaml")[0].should match(/guestbook/)
   end
-  it "should ensure that it is running"
+  it "should give the apps directory to apps, then have god load the conf file" do
+    Kernel.should_receive(:system).twice do |sys|
+      ["chown -R apps /var/apps/",'/usr/bin/god load /var/local/god/guestbook.god'].should include(sys)
+    end
+    @app.update_code @tarfile
+  end
 end
 
 describe App, "update_code with a mismatched tarfile" do
@@ -67,11 +72,22 @@ describe App, "initializing configuration" do
     `rm /etc/nginx/sites-enabled/*`
     `rm -rf /var/apps/*`
     @app = App.new :port => 3100, :key => 'myapp', :user_id => 3
-  end
+  end  
   it "should create the config file" do
     @app.initialize_configuration
     x = `cat /etc/nginx/sites-enabled/myapp`
     x.should match(/3100/)
+  end
+  it "should create the god file" do
+    @app.initialize_configuration
+    x = `cat /var/local/god/myapp.god`
+    x.should match(/3100/)
+  end
+  it "should give the apps directory to apps and reload the nginx conf" do
+    Kernel.should_receive(:system).twice do |sys|
+      ["chown -R apps /var/apps/",'/etc/init.d/nginx reload'].should include(sys)
+    end
+    @app.initialize_configuration    
   end
   it "should create the app directories" do
     @app.initialize_configuration
