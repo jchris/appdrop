@@ -74,6 +74,7 @@ class App < ActiveRecord::Base
     tmpdir = "#{APP_ROOT}/#{key}/tmpapp"
     `rm -rf #{tmpdir}`
     File.makedirs tmpdir
+    set_apps_permissions
     tarc = "tar --file #{tarfile} --force-local -C #{tmpdir} -zx"
     success = system(tarc)
     raise  FileError, "Filesystem error with #{tarc}" unless success

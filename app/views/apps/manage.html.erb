@@ -6,7 +6,7 @@
   <%= current_user.token %>
 </pre>
 
-<p>If you upload a gzipped-tarball, be certain that when we unwrap it, it will contain an app.yml or app.yaml file.</p>
+<p>If you upload a gzipped-tarball, be certain that when we unwrap it, it will contain an app.yml or app.yaml file. The best thing to do is to change your app directory and run this: <tt>tar -czf myapp.tar.gz .</tt></p>
 
 <% a_form_for(@upload, :url => upload_app_path, :html => { :multipart => true }) do |f| -%>
   <%= f.error_messages %>
