@@ -45,6 +45,7 @@ class AppsController < ApplicationController
       @upload.app = @app
       @upload.user = @user
       if (@upload.save)
+        @upload.send_to_app_once
         render :text => "Upload Successful"
       else
         render :text => "Upload Error", :status => '500'
