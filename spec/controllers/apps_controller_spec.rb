@@ -25,7 +25,7 @@ end
 describe AppsController, "POST /apps/myapp/upload with a token that matches the apps user" do
   before(:each) do
     User.stub!(:find_by_token).and_return(@u = mock_user)
-    @up = mock_model(Upload, :app= => true, :user= => true, :save => true)
+    @up = mock_model(Upload, :app= => true, :user= => true, :save => true, :send_to_app_once => true)
     Upload.stub!(:new).and_return(@up)
     @app = mock_model(App, :user => @u)
     App.stub!(:find_by_key).and_return(@app)
