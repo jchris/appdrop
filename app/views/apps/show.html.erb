@@ -5,3 +5,6 @@
   <dt>Written by:</dt>
   <dd><%= @app.user %></dd>
 </dl>
+<% if current_user && @app.user == current_user %>
+  <%= link_to "Upload a new version of the code", manage_app_url(@app) %>
+<% end %>
