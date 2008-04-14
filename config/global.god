@@ -10,7 +10,7 @@ RAILS_ROOT = "/var/www/appdrop"
   God.watch do |w|
     w.name = "appdrop-mongrel-#{port}"
     w.interval = 30.seconds # default      
-    w.start = "mongrel_rails start -c #{RAILS_ROOT} -p #{port} \
+    w.start = "mongrel_rails start -c #{RAILS_ROOT} -e production -p #{port} \
       -P #{RAILS_ROOT}/log/mongrel.#{port}.pid  -d"
     w.stop = "mongrel_rails stop -P #{RAILS_ROOT}/log/mongrel.#{port}.pid"
     w.restart = "mongrel_rails restart -P #{RAILS_ROOT}/log/mongrel.#{port}.pid"
