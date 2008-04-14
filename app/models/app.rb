@@ -31,7 +31,8 @@ class App < ActiveRecord::Base
     return if self.port
     transaction do
       a = App.find :first, :order => 'port desc', :conditions => ['id != ?', self.id]
-      self.update_attribute :port, a.port + 1
+      myport = a ? a.port + 1 : 4000
+      self.update_attribute :port, myport
     end
   end
   
