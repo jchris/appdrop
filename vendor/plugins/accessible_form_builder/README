@@ -1,0 +1,37 @@
+AccesibleFormBuilder
+===================
+
+This plugin is based upon pretty_accessible_form from http://machinesmonstersandmadness.com/svn/plugins/trunk/pretty_accessible_form
+
+== Installation
+
+git clone git://github.com/shift/accessible_form_builder.git vendor/plugins/accessible_form_builder
+
+== Usage
+
+Here's an example usage:
+  <% a_form_for :user, :url => users_path, :legend => "Login Details" do |f| %>
+    <%= f.text_field :login, :label => "Username", :note => "This is visible to other users", :required => true %>
+    <%= f.password_field :password, :label => "Password", :required => true %>
+    <%= f.password_field :password_confirmation, :label => "Confirm Password", :required => true %>
+    <%= f.separator "Personal Details" %>
+    <%= f.text_field :firstname, :label => "First name", :required => true %>
+    <%= f.text_field :lastname, :label => "Last name", :required => true %>
+    <%= f.text_field :email, :label => "E-Mail", :required => true %>
+    <%= f.separator "Location Details" %>
+    <%= f.text_field :address, :label => "Location", :note => "(eg. New York, 90210, SE1 3SR)", :required => true %>
+    <%= f.submit "Sign up" %>
+  <% end %>
+
+== Credits
+
+Original idea from A List Aparts "Prettier Accessible Forms"
+http://alistapart.com/articles/prettyaccessibleforms
+
+Rails implementation of pretty_accessible_form is copyright 2007, 2008 by Matt Williams http://machinesmonstersandmadness.com/svn/plugins/trunk/pretty_accessible_form
+
+Fixing of :required, validating markup and :note by Vincent Palmer 2008.
+For more information contact "shiftEMAILrwvhp.com".gsub!('EMAIL', '@').
+
+== License
+This is covered under a MIT License.
