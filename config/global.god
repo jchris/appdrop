@@ -11,6 +11,7 @@ RAILS_ROOT = "/var/www/appdrop"
 %w{3000 3001 3002}.each do |port|
   God.watch do |w|
     w.name = "appdrop-mongrel-#{port}"
+    w.group = 'mongrels'
     w.interval = 30.seconds # default      
     w.start = "mongrel_rails start -c #{RAILS_ROOT} -e production -p #{port} \
       -P #{RAILS_ROOT}/log/mongrel.#{port}.pid  -d"
