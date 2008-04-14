@@ -53,6 +53,8 @@ class AppsController < ApplicationController
     else
       render :text => "Authentication Failed - visit http://appdrop.com/home", :status => '403 Forbidden'
     end
+  rescue App::FileError => e
+    render :text => "FileError: #{e.message}", :status => '500'
   end
 
 end
