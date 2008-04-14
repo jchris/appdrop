@@ -20,9 +20,9 @@ describe Upload, "after create" do
     @file.stub!(:original_filename).and_return('jammy.tar.gz')
   end
   it "should send it to the app" do
+    @app.should_receive(:update_code).with("#{RAILS_ROOT}/uploads/0000/0001/jammy.tar.gz")
     @upload = Upload.new 'uploaded_data' => @file
     @upload.app = @app
-    @app.should_receive(:update_code).with("#{RAILS_ROOT}/uploads/0000/0001/jammy.tar.gz")
     @upload.save!
   end
 end

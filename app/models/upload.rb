@@ -3,7 +3,9 @@ class Upload < ActiveRecord::Base
   belongs_to :user
   belongs_to :app
   
-  after_create :send_to_app_once
+  # after_attachment_saved do |me|
+  #   me.send_to_app_once
+  # end
   
   def send_to_app_once
     return if @sent

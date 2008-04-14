@@ -46,7 +46,7 @@ describe App, "update_code with a matching tarfile" do
     IO.readlines("#{App::APP_ROOT}/guestbook/app/app.yaml")[0].should match(/guestbook/)
   end
   it "should give the apps directory to apps, then have god load the conf file" do
-    Kernel.should_receive(:system).twice do |sys|
+    Kernel.should_receive(:system).at_least(:twice) do |sys|
       ["chown -R apps /var/apps/",'/usr/bin/god load /var/local/god/guestbook.god'].should include(sys)
     end
     @app.update_code @tarfile
