@@ -6,6 +6,8 @@ end
 
 RAILS_ROOT = "/var/www/appdrop"
 
+# mongrel_rails start -c /var/www/appdrop -e production -p 3000 -P /var/www/appdrop/log/mongrel.3000.pid  -d
+
 %w{3000 3001 3002}.each do |port|
   God.watch do |w|
     w.name = "appdrop-mongrel-#{port}"
@@ -14,15 +16,14 @@ RAILS_ROOT = "/var/www/appdrop"
       -P #{RAILS_ROOT}/log/mongrel.#{port}.pid  -d"
     w.stop = "mongrel_rails stop -P #{RAILS_ROOT}/log/mongrel.#{port}.pid"
     w.restart = "mongrel_rails restart -P #{RAILS_ROOT}/log/mongrel.#{port}.pid"
-    w.start_grace = 10.seconds
-    w.restart_grace = 10.seconds
+    w.start_grace = 20.seconds
+    w.restart_grace = 20.seconds
     w.pid_file = File.join(RAILS_ROOT, "log/mongrel.#{port}.pid")
     
     w.behavior(:clean_pid_file)
 
     w.start_if do |start|
       start.condition(:process_running) do |c|
-        c.interval = 5.seconds
         c.running = false
         c.notify = 'jchris'
       end
