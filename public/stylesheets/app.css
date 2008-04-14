@@ -34,6 +34,9 @@ ol {
   padding:0;
   list-style: none;
 }
+#loginout {
+  float:right;
+}
 form li {
   clear:left;
   padding:4px;
@@ -41,4 +44,8 @@ form li {
 input[type=submit] {
   margin:20px;
   font-size:2em;
+}
+input.small {
+  margin:4px;
+  font-size:1em;
 }

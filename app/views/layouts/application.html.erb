@@ -10,11 +10,18 @@
     <div id="header">
       <h1><a href="/">AppDrop</a><%= " | #{@title}" if @title %></h1>
       <% if false && flash[:notice] %><h3 id="flash"><%= flash[:notice] %></h3><% end %>
-      <% if current_user %>
-        <p>Hello <%= current_user %>. <%= link_to "You may click here to logout" %></p>
+<div id="loginout">      <% if current_user %>
+        <form action="/login" method="post">
+          Hello <%= current_user %>.
+          <%= hidden_field_tag :_method, :delete %>
+          <%= submit_tag "Click to logout", :class => "small" %>
+        </form>
+      <% else %>
+        <%= link_to( "Login or Signup here", "/login") unless controller.controller_name == "login" %>
       <% end %>
-    </div>
+</div>    </div>
     <%= yield %>
     </div>
   </body>
 </html>
+
