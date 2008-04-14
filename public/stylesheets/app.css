@@ -2,6 +2,16 @@ body {
   font-family: Century, Georgia, sans-serif;
   background-color: #eef;
 }
+#left-ads {
+  position:absolute;
+  left:5px;
+  top:5px;
+}
+#right-ads {
+  position:absolute;
+  right:5px;
+  top:5px;
+}
 #container {
   width:800px;
   margin:0 auto;

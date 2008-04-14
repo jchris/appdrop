@@ -6,6 +6,7 @@
     <%= stylesheet_link_tag 'app' %>
   </head>
   <body>
+
     <div id="container">
     <div id="header">
       <h1><a href="/">AppDrop</a><%= " | #{@title}" if @title %></h1>
@@ -22,6 +23,43 @@
 </div>    </div>
     <%= yield %>
     </div>
+    <div id="right-ads">
+      <script type="text/javascript"><!--
+      google_ad_client = "pub-3590617286365952";
+      /* appdrop vertical skyscraper 4/14/08 */
+      google_ad_slot = "2562080270";
+      google_ad_width = 120;
+      google_ad_height = 600;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+    </div>
+    <div id="left-ads">
+      <script type="text/javascript"><!--
+      google_ad_client = "pub-3590617286365952";
+      /* links 120x90, created 4/14/08 */
+      google_ad_slot = "7170499726";
+      google_ad_width = 120;
+      google_ad_height = 90;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+    </div>
+    <% if RAILS_ENV == 'production' %>
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      var pageTracker = _gat._getTracker("UA-1854926-3");
+      pageTracker._initData();
+      pageTracker._trackPageview();
+      </script>
+    <% end %>
   </body>
 </html>
 
