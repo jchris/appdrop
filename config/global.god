@@ -1,4 +1,8 @@
-require '/mnt/email.god' rescue nil
+begin
+  require '/mnt/email.god' 
+rescue LoadError 
+  nil
+end
 
 RAILS_ROOT = "/var/www/appdrop"
 
