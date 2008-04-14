@@ -22,6 +22,10 @@ class App < ActiveRecord::Base
     key
   end
   
+  def ready?
+    self.state == "ready"
+  end
+  
   def do_setup
     set_port
     initialize_configuration
@@ -52,6 +56,7 @@ class App < ActiveRecord::Base
     replace_app_with_new
     set_apps_permissions
     load_god_conf # starts and keeps app up
+    self.update_attribute(:state, "ready")
   end
 
   def set_apps_permissions
