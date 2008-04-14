@@ -18,5 +18,9 @@ describe "A User" do
     @user.created_at.should == ca
   end
   
+  it "should set an upload token" do
+    @user.save
+    @user.token.should_not be_nil
+  end
 end
 

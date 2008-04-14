@@ -7,7 +7,7 @@ module AuthenticatedBase
     
     base.set_table_name base.name.tableize
 
-    base.validates_presence_of     :email
+    # base.validates_presence_of     :email
     base.validates_presence_of     :password,                   :if => :password_required?
     base.validates_presence_of     :password_confirmation,      :if => :password_required?
     base.validates_length_of       :password, :within => 4..40, :if => :password_required?

@@ -23,12 +23,12 @@ views
   control panel for your app
   maybe just mount the google dev console here?
 
-/apps
-  browse apps
-
-/apps/fug-this
-  public info page for app
-  link to app
+# /apps
+#   browse apps
+# 
+# /apps/fug-this
+#   public info page for app
+#   link to app
   
 
 ====

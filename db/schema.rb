@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080412232335) do
+ActiveRecord::Schema.define(:version => 20080413220918) do
 
   create_table "apps", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(:version => 20080412232335) do
     t.datetime "updated_at"
   end
 
+  create_table "uploads", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "app_id"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "nickname"
     t.string   "email"
@@ -44,6 +54,9 @@ ActiveRecord::Schema.define(:version => 20080412232335) do
     t.datetime "remember_token_expires_at"
     t.integer  "visits_count",                            :default => 0
     t.string   "permalink"
+    t.string   "token"
   end
+
+  add_index "users", ["token"], :name => "index_users_on_token"
 
 end

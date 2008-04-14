@@ -9,7 +9,7 @@ module TokenGenerator
     token
   end
 
-  def set_token
-    self.token = generate_token { |token| self.class.find_by_token(token).nil? }
+  def set_token(size = 12)
+    self.token = generate_token(size) { |token| self.class.find_by_token(token).nil? }
   end
 end

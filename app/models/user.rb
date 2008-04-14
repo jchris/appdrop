@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   # has_many :images, :as => :attachable
 
   # composed_of :tz, :class_name => 'TZInfo::Timezone', :mapping => %w( time_zone time_zone )
+  validates_presence_of     :email
   validates_format_of :nickname, :with => /\A[\-a-z0-9A-Z\s]*\Z/
   validates_format_of :email, :with => /^[_\w\d+-]+(\.[_\w\d-]+)*@[^\.@][\w\d\.-]+$/
 
@@ -30,6 +31,12 @@ class User < ActiveRecord::Base
 
   # Protect internal methods from mass-update with update_attributes
   attr_accessible :nickname, :email, :password, :password_confirmation, :time_zone
+  include TokenGenerator
+  before_create :set_upload_token
+  
+  def set_upload_token
+    set_token(24)
+  end
   
   def to_param
     email

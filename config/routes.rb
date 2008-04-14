@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  map.resources :apps
+  map.resources :apps, :member => {:manage => :get, :upload => :post}
 
   map.root :controller => "pages"
 

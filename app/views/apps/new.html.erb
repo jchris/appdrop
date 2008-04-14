@@ -1,0 +1,8 @@
+<% a_form_for @app, :url => apps_url do |f| %>
+  <%= f.error_messages %>
+  <p>The application&apos;s name is what users will see when they log into it, or browse a list of apps. Only letters, numbers and spaces allowed.</p>
+  <%= f.text_field :name %>
+  <p>The key will compose the URL of your application. For instance, if you choose <tt>myapp</tt> your URL would be <tt>http://myapp.appdrop.com</tt>. This must be unique across all of AppDrop. Only lowercase letters, numbers, and the dash (-) are allowed. <strong>It must be identical to the value of the application line in your <tt>app.yaml</tt> file.</strong></p>
+  <%= f.text_field :key %>
+  <%= submit_tag "Create this application" %>
+<% end %>

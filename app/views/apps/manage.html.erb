@@ -1,0 +1,16 @@
+<p>The next step is to upload your application to AppDrop, so we can serve it. There are two options. Either upload a gzipped-tarball of your application directory with this form, or <a href="/appdrop_upload.rb">use our command-line uploading script</a>.</p>
+
+<p>You will need to supply our upload script with your secret authentication token. (It will be the same for all your apps - contact us if you need it changed for some reason.)</p>
+
+<pre>
+  <%= current_user.token %>
+</pre>
+
+<p>If you upload a gzipped-tarball, be certain that when we unwrap it, it will contain an app.yml or app.yaml file.</p>
+
+<% a_form_for(@upload, :url => upload_app_path, :html => { :multipart => true }) do |f| -%>
+  <%= f.error_messages %>
+    <%= f.file_field :uploaded_data %>
+    <%= hidden_field_tag :auth, current_user.token %>
+    <%= submit_tag 'Upload tar.gz' %>
+<% end -%>

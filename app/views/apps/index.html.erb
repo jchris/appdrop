@@ -1,0 +1,7 @@
+<h2>All Applications</h2>
+
+<%= link_to "Make a new app", new_app_url %>
+
+<ul>
+  <%= render :partial => 'list', :collection => @apps %>
+</ul>
