@@ -1,0 +1,17 @@
+require 'tlsmail' # special for gmail
+Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+
+God::Contacts::Email.message_settings = {:from => 'xxx@xxx'}
+
+God::Contacts::Email.server_settings = {
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :user_name => "xxx@gmail.com",
+  :password => "xxx",
+  :authentication => :plain
+}
+
+God.contact(:email) do |c|
+  c.name = 'xxx'
+  c.email = 'xx@xxx'
+end
