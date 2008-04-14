@@ -1,7 +1,13 @@
 <h2><%= @app.name %></h2>
 <dl>
   <dt>Visit at:</dt>
-  <dd><a href="http://<%= @app.key %>.appdrop.com">http://<%= @app.key %>.appdrop.com</a></dd>
+  <dd>
+    <% if @app.uploads.count > 0 %>
+    <a href="http://<%= @app.key %>.appdrop.com">http://<%= @app.key %>.appdrop.com</a>
+    <% else %>
+    Wating for code upload.
+    <% end %>
+  </dd>
   <dt>Written by:</dt>
   <dd><%= @app.user %></dd>
 </dl>
