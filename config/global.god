@@ -24,7 +24,7 @@ RAILS_ROOT = "/var/www/appdrop"
       start.condition(:process_running) do |c|
         c.interval = 5.seconds
         c.running = false
-        c.notify 'jchris'
+        c.notify = 'jchris'
       end
     end
     
@@ -32,13 +32,13 @@ RAILS_ROOT = "/var/www/appdrop"
       restart.condition(:memory_usage) do |c|
         c.above = 150.megabytes
         c.times = [3, 5] # 3 out of 5 intervals
-        c.notify 'jchris'
+        c.notify = 'jchris'
       end
     
       restart.condition(:cpu_usage) do |c|
         c.above = 50.percent
         c.times = 5
-        c.notify 'jchris'
+        c.notify = 'jchris'
       end
     end
     
@@ -52,7 +52,7 @@ RAILS_ROOT = "/var/www/appdrop"
         c.retry_in = 10.minutes
         c.retry_times = 5
         c.retry_within = 2.hours
-        c.notify 'jchris'
+        c.notify = 'jchris'
       end
     end
   end
