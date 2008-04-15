@@ -5,3 +5,19 @@
 <ul>
   <%= render :partial => 'list', :collection => @apps %>
 </ul>
+
+<p>If you get an SyntaxError on code that you upload, that doesn&#x27;t happen on your local machine, it&#x27;s probably because you are developing on Windows. Python on Linux is picky about line endings. Try saving your files with *nix style line endings (\n instead of \r\n) and reuploading. Here&#x27;s an example of what such a SyntaxError looks like:</p>
+
+<pre>
+  &lt;type &#x27;exceptions.SyntaxError&#x27;&gt;: invalid syntax (main.py, line 1)
+        args = (&#x27;invalid syntax&#x27;, (&#x27;/var/apps/aiassistant/app/main.py&#x27;, 1, 15, &#x27;import os, sys\r\n&#x27;))
+        filename = &#x27;/var/apps/aiassistant/app/main.py&#x27;
+        lineno = 1
+        message = &#x27;&#x27;
+        msg = &#x27;invalid syntax&#x27;
+        offset = 15
+        print_file_and_line = None
+        text = &#x27;import os, sys\r\n&#x27;
+</pre>
+
+<p>If you have access to awk, you can fix it by running this command on your file: <tt>awk '{ sub("\r$", ""); print }' main.py > new_main.py</tt> and then replacing your old file with the new one. You need to do this for all your python files.</p>
