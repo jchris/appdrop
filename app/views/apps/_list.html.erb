@@ -1,6 +1,6 @@
 <li>
   <%= link_to list.name, app_path(list) %> (by <%= list.user %>)
-  <% if list.uploads.count > 0 %>
+  <% if list.ready? %>
    - <a href="http://<%= list.key %>.appdrop.com">http://<%= list.key %>.appdrop.com</a>
   <% end %>
 </li>

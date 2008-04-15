@@ -51,6 +51,12 @@ describe App, "update_code with a matching tarfile" do
     end
     @app.update_code @tarfile
   end
+  it "should get state ready" do
+    @app.should_not be_ready
+    @app.update_code @tarfile
+    @app.state.should == "ready"
+    @app.should be_ready
+  end
 end
 
 describe App, "update_code with a mismatched tarfile" do

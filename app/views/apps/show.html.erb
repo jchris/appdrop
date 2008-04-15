@@ -2,7 +2,7 @@
 <dl>
   <dt>Visit at:</dt>
   <dd>
-    <% if @app.uploads.count > 0 %>
+    <% if @app.ready? %>
     <a href="http://<%= @app.key %>.appdrop.com">http://<%= @app.key %>.appdrop.com</a>
     <% else %>
     Wating for code upload.
